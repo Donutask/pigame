@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Pi Game</title>
+
+    <!-- roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <!-- css -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- fancy box -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <h1 id="heading">Pi Game</h1>
+        <!-- <a id="about">About</a> -->
+    </header>
+    <input type="number" hidden=true id="dummyText">
+    <p id="writtenDigits"></p>
+    <p id="livesLeft">Lives: 3</p>
+    <a id="openSettings" onclick="OpenSettings()">&#9881; Settings</a>
+
+    <div id="gameOver" class="modal">
+        <div class="modalContent">
+            <span class="close" onclick='ResetGame()'>&times;</span>
+            <h2>Game Over</h2>
+            <p>You recited <b id="score">123</b> digits of pi!</p>
+            <button onclick='ResetGame()'>Play Again</button>
+        </div>
+    </div>
+
+    <div id="settings" class="modal">
+        <div class="modalContent">
+            <span class="close" onclick='ResetGame()'>&times;</span>
+            <h2>Settings</h2>
+
+            <div class="settingsRow">
+                <label id="themeLabel" class="container">
+                    Switch Theme
+                    <input id="themeToggle" type="checkbox" onchange="ChangeTheme()">
+                     <span class="checkmark"></span>
+                </label>
+            </div>
+            <br>
+
+            <button onclick='ResetGame()'>Close</button>
+        </div>
+    </div>
+
+    <script src="pi.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
