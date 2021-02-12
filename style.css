@@ -9,6 +9,7 @@ body {
 #writtenDigits {
     font-size: 2em;
     background-color: rgb(20, 20, 50);
+    color: #fff;
     padding: 15px;
     width: 90%;
     overflow-y: hidden;

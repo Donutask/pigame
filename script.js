@@ -22,7 +22,7 @@ document.addEventListener('keyup', (e) => {
                 console.log("Digits of pi ran out");
             } else if (num == pi[piPosition]) {
                 piPosition++;
-                writtenDigits.innerHTML = "" + writtenDigits.innerHTML.substring(0, writtenDigits.innerHTML.length - 1) + num + "?";
+                writtenDigits.value = "" + writtenDigits.value.substring(0, writtenDigits.value.length - 1) + num + "?";
 
                 //scroll really far to make it max
                 writtenDigits.scrollLeft = 99999999;
@@ -75,7 +75,7 @@ function ResetGame() {
     gameOverPopup.style.display = "none";
     settingsPopup.style.display = "none";
 
-    writtenDigits.innerHTML = "π = 3.?";
+    writtenDigits.value = "π = 3.?";
 
     startingLives = 3;
     lives = 3;
@@ -85,7 +85,7 @@ function ResetGame() {
 
     ChangeTheme();
 
-    document.getElementById("dummyText").focus();
+    writtenDigits.focus();
 }
 
 
