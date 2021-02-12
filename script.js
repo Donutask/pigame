@@ -2,6 +2,7 @@ var writtenDigits = document.getElementById("writtenDigits");
 var lifeCounter = document.getElementById("livesLeft");
 var gameOverPopup = document.getElementById("gameOver");
 var settingsPopup = document.getElementById("settings");
+var inputDigit = document.getElementById("inputDigit");
 
 var score = document.getElementById("score");
 
@@ -85,6 +86,7 @@ function ResetGame() {
 
     ChangeTheme();
 
+    inputDigit.style.width = '150px';
     writtenDigits.focus();
 }
 
@@ -95,9 +97,21 @@ window.onclick = function(event) {
         ResetGame();
     }
 }
+
 window.onload = function() {
-    document.getElementById("inputDigit").value = "";
-    document.getElementById("inputDigit").focus();
+    if (MobileCheck()) {
+        inputDigit.hidden = false;
+        inputDigit.focus();
+
+    } else {
+        inputDigit.hidden = true;
+    }
+}
+
+function DigitInputValueChange() {
+    inputDigit.value = "";
+    inputDigit.placeholder = "";
+    inputDigit.style.width = '50px';
 }
 
 // stop number increment on scroll
@@ -111,14 +125,6 @@ $('form').on('focus', 'input[type=number]', function(e) {
 $('form').on('blur', 'input[type=number]', function(e) {
     $(this).off('wheel.disableScroll')
 })
-
-function InputLoseFocus() {
-    if (MobileCheck()) {
-        document.getElementById("inputDigit").value = "Click here to start typing";
-    } else {
-        document.getElementById("inputDigit").value = "";
-    }
-}
 
 function MobileCheck() {
     let check = false;

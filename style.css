@@ -21,16 +21,12 @@ body {
 }
 
 #inputDigit {
-    width: 100px;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
     text-align: center;
-    background: rgb(3, 3, 3);
-    color: transparent;
-    border: none;
-    cursor: default;
-}
-
-#inputDigit:focus {
-    border: none;
+    background: rgb(230, 230, 230);
+    color: black;
 }
 
 
