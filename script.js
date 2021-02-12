@@ -22,7 +22,7 @@ document.addEventListener('keyup', (e) => {
                 console.log("Digits of pi ran out");
             } else if (num == pi[piPosition]) {
                 piPosition++;
-                writtenDigits.value = "" + writtenDigits.value.substring(0, writtenDigits.value.length - 1) + num + "?";
+                writtenDigits.innerHTML = "" + writtenDigits.innerHTML.substring(0, writtenDigits.innerHTML.length - 1) + num + "?";
 
                 //scroll really far to make it max
                 writtenDigits.scrollLeft = 99999999;
@@ -75,7 +75,7 @@ function ResetGame() {
     gameOverPopup.style.display = "none";
     settingsPopup.style.display = "none";
 
-    writtenDigits.value = "π = 3.?";
+    writtenDigits.innerHTML = "π = 3.?";
 
     startingLives = 3;
     lives = 3;
@@ -95,3 +95,19 @@ window.onclick = function(event) {
         ResetGame();
     }
 }
+window.onload = function() {
+    document.getElementById("inputDigit").value = "";
+    document.getElementById("inputDigit").focus();
+}
+
+// stop number increment on scroll
+// disable mousewheel on a input number field when in focus
+// (to prevent Cromium browsers change the value when scrolling)
+$('form').on('focus', 'input[type=number]', function(e) {
+    $(this).on('wheel.disableScroll', function(e) {
+        e.preventDefault()
+    })
+})
+$('form').on('blur', 'input[type=number]', function(e) {
+    $(this).off('wheel.disableScroll')
+})
