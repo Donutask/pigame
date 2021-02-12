@@ -10,7 +10,8 @@
     <!-- roboto -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <!-- css -->
-    <link href="style.css" rel="stylesheet">
+    <link href="styleMain.css" rel="stylesheet">
+    <link id="themeStylesheet" href="styleDark.css" rel="stylesheet">
 
     <!-- fancy box -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
@@ -21,12 +22,13 @@
 </head>
 
 <body>
+    <noscript>This page requires JavaScript to run! Please enable it in your browsers settings.</noscript>
     <header>
         <h1 id="heading">Pi Game</h1>
         <!-- <a id="about">About</a> -->
     </header>
     <p id="writtenDigits"> </p>
-    <input id="inputDigit" placeholder="Tap here to type" type="number" oninput='DigitInputValueChange()'>
+    <input id="inputDigit" placeholder="Tap here to type" type="number" oninput='DigitInputValueChange()' onblur="DigitInputLoseFocus()">
 
     </input>
     <p id="livesLeft">Lives: 3</p>
@@ -53,6 +55,17 @@
                      <span class="checkmark"></span>
                 </label>
             </div>
+            <br>
+            <div class="settingsRow">
+                <label id="mobileInputLabel" for="mobileInput">Mobile Input</label>
+                <input id="mobileInput" type="checkbox" onchange="ChangeMobileInput()">
+            </div>
+            <br>
+            <a href="privacy.html">Privacy</a>
+            <br>
+            <a href="https://github.com/Donutask/pigame">Source Code</a>
+
+            <br>
             <br>
 
             <button onclick='ResetGame()'>Close</button>

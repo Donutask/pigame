@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(5, 5, 5);
+    color: white;
+}
+
+#writtenDigits {
+    background-color: rgb(20, 20, 35);
+    color: white;
+}
+
+#inputDigit {
+    background: rgb(230, 230, 230);
+    color: black;
+}
