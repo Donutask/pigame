@@ -17,6 +17,7 @@ body {
     scroll-behavior: smooth;
     margin: auto;
     text-align: center;
+    white-space: nowrap;
 }
 
 #inputDigit {
