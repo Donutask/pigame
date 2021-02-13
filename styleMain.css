@@ -5,6 +5,10 @@ body {
     text-align: center;
 }
 
+#play {
+    font-size: 3em;
+}
+
 #writtenDigits {
     font-size: 2em;
     padding: 15px;
