@@ -1,28 +1,35 @@
 var writtenDigits = document.getElementById("writtenDigits");
 var lifeCounter = document.getElementById("livesLeft");
 var gameOverPopup = document.getElementById("gameOver");
+var tooGoodPopup = document.getElementById("overflowGameOver");
 var settingsPopup = document.getElementById("settings");
 var inputDigit = document.getElementById("inputDigit");
 var themeLink = document.getElementById("themeStylesheet");
 
 var score = document.getElementById("score");
+var length = document.getElementById("length");
 
 let piPosition;
 let lives;
 let startingLives;
 let theme;
 let mobileInput;
+let inputAllowed;
 ResetGame();
 
 document.addEventListener('keyup', (e) => {
     let key = e.key;
 
-    if (lives > 0) {
+    if (inputAllowed) {
         if (!isNaN(key) && key != " ") {
             let num = parseInt(key);
 
             if (piPosition >= pi.length - 1) {
-                console.log("Digits of pi ran out");
+                length.innerHTML = pi.length;
+                tooGoodPopup.style.display = "block";
+
+                inputAllowed = false;
+
             } else if (num == pi[piPosition]) {
                 piPosition++;
                 writtenDigits.innerHTML = "" + writtenDigits.innerHTML.substring(0, writtenDigits.innerHTML.length - 1) + num + "?";
@@ -49,11 +56,15 @@ function UpdateLifeCounter() {
     if (lives <= 0) {
         gameOverPopup.style.display = "block";
         score.innerHTML = piPosition;
+
+        inputAllowed = false;
     }
 }
 
 function OpenSettings() {
     settingsPopup.style.display = "block";
+    inputAllowed = false;
+
 }
 
 function ChangeTheme() {
@@ -96,6 +107,8 @@ function ResetGame() {
 
     inputDigit.style.width = '150px';
     writtenDigits.focus();
+
+    inputAllowed = true;
 }
 
 
@@ -122,7 +135,7 @@ window.onload = function() {
             //light mode
             localStorage.setItem("theme", false);
         }
-
+        document.getElementById("themeToggle").checked = theme;
     }
 
     if (localStorage.getItem("mobileInput") === true || localStorage.getItem("mobileInput") === false) {
@@ -133,6 +146,7 @@ window.onload = function() {
     } else {
         mobileInput = MobileCheck();
         localStorage.setItem("mobileInput", mobileInput);
+        document.getElementById("mobileInput").checked = mobileInput;
     }
 }
 
