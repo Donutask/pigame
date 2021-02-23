@@ -138,16 +138,15 @@ window.onload = function() {
         document.getElementById("themeToggle").checked = theme;
     }
 
-    if (localStorage.getItem("mobileInput") === true || localStorage.getItem("mobileInput") === false) {
-
-        mobileInput = localStorage.getItem("mobileInput");
-        document.getElementById("mobileInput").checked = mobileInput;
+    let _input = localStorage.getItem("mobileInput");
+    if (_input === true || _input === false) {
+        mobileInput = _input;
 
     } else {
         mobileInput = MobileCheck();
         localStorage.setItem("mobileInput", mobileInput);
-        document.getElementById("mobileInput").checked = mobileInput;
     }
+    document.getElementById("mobileInput").checked = mobileInput;
 }
 
 function DigitInputValueChange() {
