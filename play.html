@@ -13,11 +13,10 @@
     <link href="styleMain.css" rel="stylesheet">
     <link id="themeStylesheet" href="styleDark.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <link rel='shortcut icon' type='image/png' href='favicon.png' />
-
+    <!-- fav icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -42,8 +41,8 @@
         <div class="modalContent">
             <span class="close" onclick='ResetGame()'>&times;</span>
             <h2>Game Over</h2>
-            <p>You recited <b id="score">123</b> digits of pi!</p>
-            <button onclick='ResetGame()'>Play Again</button>
+            <p id="score">You recited <b>31</b> digits of pi! </p>
+            <button class="closeButton" onclick='ResetGame()'>Play Again</button>
         </div>
     </div>
 
@@ -52,7 +51,7 @@
             <span class="close" onclick='ResetGame()'>&times;</span>
             <h2>Woah!</h2>
             <p>You can recite <b id="length">1000</b> digits of pi! This site only knows 1000 so you'll have to stop here.</p>
-            <button onclick='ResetGame()'>Close</button>
+            <button class="closeButton" onclick='ResetGame()'>Close</button>
         </div>
     </div>
 
@@ -61,18 +60,36 @@
             <span class="close" onclick='ResetGame()'>&times;</span>
             <h2>Settings</h2>
 
-            <div class="settingsRow">
+            <!-- <div class="settingsRow">
                 <label id="themeLabel" class="container">
                     Switch Theme
                     <input id="themeToggle" type="checkbox" onchange="ChangeTheme()">
                      <span class="checkmark"></span>
                 </label>
             </div>
-            <br>
-            <div class="settingsRow">
-                <label id="mobileInputLabel" for="mobileInput">Mobile Input</label>
-                <input id="mobileInput" type="checkbox" onchange="ChangeMobileInput()">
+            <br> -->
+
+            <div>
+                <p class="settingLabel">Light Theme </p>
+                <label class="switch" id="themeLabel">
+                
+               <input id="themeToggle" type="checkbox" onchange="ChangeTheme()"></input>
+                <span id="themeTogglier" class="slider round"></span>
+                </label>
             </div>
+            <br>
+
+            <div>
+                <p class="settingLabel">Text Input Field </p>
+                <label class="switch" id="mobileInputLabel">
+                
+               <input id="mobileInput" type="checkbox" onchange="ChangeMobileInput()"></input>
+                <span class="slider round"></span>
+                </label>
+            </div>
+
+            <br>
+            <a href="about.html">About</a>
             <br>
             <a href="privacy.html">Privacy</a>
             <br>
@@ -81,7 +98,7 @@
             <br>
             <br>
 
-            <button onclick='ResetGame()'>Close</button>
+            <button class="closeButton" onclick='ResetGame()'>Close</button>
         </div>
     </div>
 

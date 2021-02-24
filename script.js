@@ -7,7 +7,11 @@ var inputDigit = document.getElementById("inputDigit");
 var themeLink = document.getElementById("themeStylesheet");
 
 var score = document.getElementById("score");
+
 var length = document.getElementById("length");
+
+let mobileInputToggle = document.getElementById("mobileInput");
+let themeToggle = document.getElementById("themeToggle");
 
 let piPosition;
 let lives;
@@ -15,7 +19,6 @@ let startingLives;
 let theme;
 let mobileInput;
 let inputAllowed;
-ResetGame();
 
 document.addEventListener('keyup', (e) => {
     let key = e.key;
@@ -57,6 +60,12 @@ function UpdateLifeCounter() {
         gameOverPopup.style.display = "block";
         score.innerHTML = piPosition;
 
+        if (piPosition > 1) {
+            score.innerHTML = `You recited <b>${piPosition}</b> digits of pi!`
+        } else {
+            score.innerHTML = `You recited 1 digit of pi!`
+        }
+
         inputAllowed = false;
     }
 }
@@ -68,7 +77,7 @@ function OpenSettings() {
 }
 
 function ChangeTheme() {
-    theme = document.getElementById("themeToggle").checked;
+    theme = themeToggle.checked;
     localStorage.setItem("theme", theme);
 
     if (theme == true) {
@@ -78,9 +87,21 @@ function ChangeTheme() {
     }
 }
 
+
+
 function ChangeMobileInput() {
-    mobileInput = document.getElementById("mobileInput").checked;
+    mobileInput = mobileInputToggle.checked;
     localStorage.setItem("mobileInput", mobileInput);
+
+
+    if (mobileInput) {
+        //activate the input thingy
+        inputDigit.hidden = false;
+
+    } else {
+        inputDigit.hidden = true;
+    }
+
 }
 
 function ResetGame() {
@@ -92,18 +113,11 @@ function ResetGame() {
     startingLives = 3;
     lives = 3;
 
-    if (mobileInput) {
-        //activate the input thingy
-        inputDigit.hidden = false;
-
-    } else {
-        inputDigit.hidden = true;
-    }
-
     piPosition = 0;
     UpdateLifeCounter();
 
     ChangeTheme();
+    ChangeMobileInput();
 
     inputDigit.style.width = '150px';
     writtenDigits.focus();
@@ -117,15 +131,19 @@ window.onclick = function(event) {
     if (event.target == gameOverPopup) {
         ResetGame();
     }
+    if (event.target == tooGoodPopup) {
+        ResetGame();
+    }
+    if (event.target == settingsPopup) {
+        ResetGame();
+    }
 }
 
+
 window.onload = function() {
-    //detects true or false incase someone tampers with saved data
-
-    if (localStorage.getItem("theme") === true || localStorage.getItem("theme") === false) {
-        theme = localStorage.getItem("theme");
-        document.getElementById("themeToggle").checked = theme;
-
+    let _theme = localStorage.getItem("theme");
+    if (_theme != null) {
+        theme = _theme;
     } else {
 
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -135,18 +153,24 @@ window.onload = function() {
             //light mode
             localStorage.setItem("theme", false);
         }
-        document.getElementById("themeToggle").checked = theme;
     }
+    themeToggle.checked = theme;
 
     let _input = localStorage.getItem("mobileInput");
-    if (_input === true || _input === false) {
+    if (_input != null) {
         mobileInput = _input;
 
     } else {
         mobileInput = MobileCheck();
         localStorage.setItem("mobileInput", mobileInput);
     }
-    document.getElementById("mobileInput").checked = mobileInput;
+    mobileInputToggle.checked = mobileInput;
+
+    ResetGame();
+
+    if (window.location.hash) {
+        OpenSettings();
+    }
 }
 
 function DigitInputValueChange() {
