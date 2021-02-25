@@ -15,7 +15,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
     // Stash the event so it can be triggered later.
     window.deferredPrompt = event;
     // Remove the 'hidden' class from the install button container
-    divInstall.classList.toggle('hidden', false);
+    divInstall.hidden = false;
 });
 
 butInstall.addEventListener('click', async() => {
@@ -23,6 +23,9 @@ butInstall.addEventListener('click', async() => {
     const promptEvent = window.deferredPrompt;
     if (!promptEvent) {
         // The deferred prompt isn't available.
+        divInstall.hidden = true;
+        alert("Can't install. Your browser probably doesn't support Progressive Web Apps.");
+
         return;
     }
     // Show the install prompt.
@@ -34,7 +37,7 @@ butInstall.addEventListener('click', async() => {
     // prompt() can only be called once.
     window.deferredPrompt = null;
     // Hide the install button.
-    divInstall.classList.toggle('hidden', true);
+    divInstall.hidden = false;
 });
 
 window.addEventListener('appinstalled', (event) => {
