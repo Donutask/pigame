@@ -8,6 +8,7 @@ function Register() {
 Register();
 
 butInstall = document.getElementById("add-button");;
+divInstall = document.getElementById("install");;
 
 window.addEventListener('beforeinstallprompt', (event) => {
     console.log('thumbs up emoji', 'beforeinstallprompt', event);

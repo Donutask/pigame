@@ -37,6 +37,14 @@ body {
     outline: none
 }
 
+#add-button {
+    background-color: whitesmoke;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+}
+
 
 /* hide arrows to change number */
 
