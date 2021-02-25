@@ -76,8 +76,13 @@ function OpenSettings() {
 
 }
 
-function ChangeTheme() {
-    theme = themeToggle.checked;
+function ChangeTheme(value) {
+    theme = value;
+    if (theme == true) {
+        themeToggle.checked = true;
+    } else {
+        themeToggle.checked = false;
+    }
     localStorage.setItem("theme", theme);
 
     if (theme == true) {
@@ -89,12 +94,18 @@ function ChangeTheme() {
 
 
 
-function ChangeMobileInput() {
-    mobileInput = mobileInputToggle.checked;
+function ChangeMobileInput(value) {
+    mobileInput = value;
+
+    if (mobileInput == true) {
+        mobileInputToggle.checked = true;
+    } else {
+        mobileInputToggle.checked = false;
+    }
+
     localStorage.setItem("mobileInput", mobileInput);
 
-
-    if (mobileInput) {
+    if (mobileInput == true) {
         //activate the input thingy
         inputDigit.hidden = false;
 
@@ -116,8 +127,8 @@ function ResetGame() {
     piPosition = 0;
     UpdateLifeCounter();
 
-    ChangeTheme();
-    ChangeMobileInput();
+    ChangeTheme(theme);
+    ChangeMobileInput(mobileInput);
 
     inputDigit.style.width = '150px';
     writtenDigits.focus();
@@ -154,7 +165,16 @@ window.onload = function() {
             localStorage.setItem("theme", false);
         }
     }
-    themeToggle.checked = theme;
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var themeArg = url.searchParams.get("theme");
+    if (themeArg != null) {
+        if (themeArg == "light") {
+            theme = true;
+        } else if (themeArg == "dark") {
+            theme = false;
+        }
+    }
 
     let _input = localStorage.getItem("mobileInput");
     if (_input != null) {
@@ -164,7 +184,6 @@ window.onload = function() {
         mobileInput = MobileCheck();
         localStorage.setItem("mobileInput", mobileInput);
     }
-    mobileInputToggle.checked = mobileInput;
 
     ResetGame();
 
