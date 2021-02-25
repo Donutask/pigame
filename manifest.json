@@ -14,5 +14,6 @@
     "theme_color": "#141423",
     "background_color": "#050505",
     "display": "standalone",
+    "orientation": "any",
     "start_url": "https://donutask.github.io/pigame/play.html"
 }
