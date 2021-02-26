@@ -51,6 +51,4 @@ const promptEvent = window.deferredPrompt;
 if (!promptEvent) {
     // The deferred prompt isn't available.
     divInstall.hidden = true;
-
-    return;
 }
