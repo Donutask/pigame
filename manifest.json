@@ -1,6 +1,6 @@
 {
     "name": "Pi Game",
-    "short_name": "Pi",
+    "short_name": "Pi Game",
     "description": "How many digits of Pi do you know?",
     "icons": [{
         "src": "android-chrome-192x192.png",

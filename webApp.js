@@ -20,7 +20,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
 butInstall.addEventListener('click', async() => {
     console.log('thumbs up emoji', 'butInstall-clicked');
-    const promptEvent = window.deferredPrompt;
+    // const promptEvent = window.deferredPrompt;
     if (!promptEvent) {
         // The deferred prompt isn't available.
         divInstall.hidden = true;
@@ -45,3 +45,12 @@ window.addEventListener('appinstalled', (event) => {
     // Clear the deferredPrompt so it can be garbage collected
     window.deferredPrompt = null;
 });
+
+//show hide button on start?
+const promptEvent = window.deferredPrompt;
+if (!promptEvent) {
+    // The deferred prompt isn't available.
+    divInstall.hidden = true;
+
+    return;
+}
