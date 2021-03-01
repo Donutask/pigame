@@ -31,17 +31,28 @@
 </head>
 
 <body>
-    <noscript>This page requires JavaScript to run! Please enable it in your browsers settings.</noscript>
+
     <header>
         <h1 id="heading">Pi Game</h1>
-        <!-- <a id="about">About</a> -->
     </header>
-    <p id="writtenDigits"> </p>
-    <input id="inputDigit" placeholder="Tap here to type" type="number" oninput='DigitInputValueChange()' onblur="DigitInputLoseFocus()">
 
-    </input>
-    <p id="livesLeft">Lives: 3</p>
-    <a id="openSettings" onclick="OpenSettings()">&#9881; Settings</a>
+    <noscript>
+       <style> main { display: none } </style>
+       <h3> This page requires JavaScript! Please enable it in your browsers settings.</h3>
+       <h5>Why?</h5>
+       <p>This site uses JavaScript to make the game actually work. It detects keypresses, checks if their right, processes and stores settings and much more. It isn't used to track you.</p>
+    </noscript>
+
+    <main>
+        <p id="writtenDigits"></p>
+        <input id="inputDigit" placeholder="Tap here to type" type="number" oninput='DigitInputValueChange()' onblur="DigitInputLoseFocus()">
+
+        </input>
+        <p id="livesLeft">Lives: 3</p>
+        <a id="endGame" onclick="GameOver()">&times; End</a>
+        <a id="openSettings" onclick="OpenSettings()">&#9881; Settings</a>
+    </main>
+
 
     <div id="gameOver" class="modal">
         <div class="modalContent">
@@ -56,7 +67,7 @@
         <div class="modalContent">
             <span class="close" onclick='ResetGame()'>&times;</span>
             <h2>Woah!</h2>
-            <p>You can recite <b id="length">1000</b> digits of pi! This site only knows 1000 so you'll have to stop here.</p>
+            <p>You can recite <b id="length">1000</b> digits of pi! You reached the max digits the site knows so you'll have to stop here.</p>
             <button class="closeButton" onclick='ResetGame()'>Close</button>
         </div>
     </div>
@@ -66,15 +77,26 @@
             <span class="close" onclick='ResetGame()'>&times;</span>
             <h2>Settings</h2>
 
-            <!-- <div class="settingsRow">
-                <label id="themeLabel" class="container">
-                    Switch Theme
-                    <input id="themeToggle" type="checkbox" onchange="ChangeTheme()">
-                     <span class="checkmark"></span>
-                </label>
+            <!-- <div>
+                <p class="settingLabel">Number </p>
+                <select>
+                  <option selected=true disabled=true>Select</option>
+                  <option>π Pi</option>
+                  <option>ϕ Phi</option>
+                  </select>
+                
             </div>
             <br> -->
-
+            <div>
+                <label class="settingLabel" for="startPosInput">Start position </label>
+                <input id="startPosInput" class="numInput" type="number" min="0" max="999" oninput="ChangeStartPos(this.value)"></input>
+            </div>
+            <br>
+            <div>
+                <label class="settingLabel" for="startLivesInput">Lives </label>
+                <input id="startLivesInput" class="numInput" type="number" min="1" max="10" oninput="ChangeStartLives(this.value)"></input>
+            </div>
+            <br>
             <div>
                 <p class="settingLabel">Light Theme </p>
                 <label class="switch" id="themeLabel">
@@ -112,7 +134,7 @@
         </div>
     </div>
 
-    <script src="pi.js"></script>
+    <script src="number.js"></script>
     <script src="script.js"></script>
     <script src="webApp.js"></script>
 

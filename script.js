@@ -12,13 +12,23 @@ var length = document.getElementById("length");
 
 let mobileInputToggle = document.getElementById("mobileInput");
 let themeToggle = document.getElementById("themeToggle");
+let startPosInput = document.getElementById("startPosInput");
+let startLivesInput = document.getElementById("startLivesInput");
 
-let piPosition;
+let openSettings = document.getElementById("openSettings");
+let endGame = document.getElementById("endGame");
+
+let startingPosition = 0;
+let position;
+
+let startingLives = 3;
 let lives;
-let startingLives;
+
 let theme;
 let mobileInput;
 let inputAllowed;
+
+let number = pi;
 
 document.addEventListener('keyup', (e) => {
     let key = e.key;
@@ -27,19 +37,15 @@ document.addEventListener('keyup', (e) => {
         if (!isNaN(key) && key != " ") {
             let num = parseInt(key);
 
-            if (piPosition >= pi.length - 1) {
-                length.innerHTML = pi.length;
+            if (position >= number.digits.length - 1) {
+                length.innerHTML = number.digits.length;
                 tooGoodPopup.style.display = "block";
 
                 inputAllowed = false;
 
-            } else if (num == pi[piPosition]) {
-                piPosition++;
-                writtenDigits.innerHTML = "" + writtenDigits.innerHTML.substring(0, writtenDigits.innerHTML.length - 1) + num + "?";
-
-                //scroll really far to make it max
-                writtenDigits.scrollLeft = 99999999;
-
+            } else if (num == number.digits[position]) {
+                position++;
+                UpdateWrittenDigits();
             } else {
                 //wrong, lose ife
                 lives--;
@@ -49,31 +55,59 @@ document.addEventListener('keyup', (e) => {
     }
 });
 
+function UpdateWrittenDigits() {
+    writtenDigits.innerHTML = `${number.symbol} = ${number.start}.${number.digits.substring(0, position)}?`;
+    writtenDigits.scrollLeft = 99999999;
+}
+
 function UpdateLifeCounter() {
-    if (piPosition == 0 && lives == startingLives) {
+    if (position == 0 && lives == startingLives) {
         lifeCounter.innerHTML = "Type a number to begin";
+
+        endGame.style.display = "none";
+        openSettings.style.display = "block";
+
     } else {
         lifeCounter.innerHTML = "Lives: " + lives;
+
+        endGame.style.display = "block";
+        openSettings.style.display = "none";
     }
 
     if (lives <= 0) {
         gameOverPopup.style.display = "block";
-        score.innerHTML = piPosition;
+        score.innerHTML = position;
+        lifeCounter.innerHTML = "Game Over";
 
-        if (piPosition > 1) {
-            score.innerHTML = `You recited <b>${piPosition}</b> digits of pi!`
+        if (position > 1) {
+            score.innerHTML = `You recited <b>${position}</b> digits of ${number.symbol}!`
         } else {
-            score.innerHTML = `You recited 1 digit of pi!`
+            score.innerHTML = `You recited 1 digit of ${number.symbol}!`
         }
 
         inputAllowed = false;
     }
 }
 
+function GameOver() {
+    inputAllowed = false;
+
+    score.innerHTML = position;
+    if (position > 1) {
+        score.innerHTML = `You recited <b>${position}</b> digits of ${number.symbol}!`
+    } else {
+        score.innerHTML = `You recited 1 digit of ${number.symbol}!`
+    }
+
+    gameOverPopup.style.display = "block";
+
+    endGame.style.display = "none";
+    openSettings.style.display = "block";
+}
+
 function OpenSettings() {
     settingsPopup.style.display = "block";
     inputAllowed = false;
-
 }
 
 function ChangeTheme(value) {
@@ -93,6 +127,33 @@ function ChangeTheme(value) {
 }
 
 
+
+function ChangeStartPos(value) {
+    let parsed = parseInt(value);
+    if (parsed < 0) {
+        parsed = 0;
+    }
+    if (parsed >= number.digits.length) {
+        parsed = number.digits.length - 2;
+    }
+    startingPosition = parsed;
+
+    localStorage.setItem("startPos", startingPosition);
+}
+
+function ChangeStartLives(value) {
+    let parsed = parseInt(value);
+    if (parsed < 0) {
+        parsed = 0;
+    }
+    //arbitary max value
+    if (parsed > 10) {
+        parsed = 10;
+    }
+    startingLives = parsed;
+
+    localStorage.setItem("startingLives", startingLives);
+}
 
 function ChangeMobileInput(value) {
     mobileInput = value;
@@ -118,20 +179,22 @@ function ChangeMobileInput(value) {
 function ResetGame() {
     gameOverPopup.style.display = "none";
     settingsPopup.style.display = "none";
+    tooGoodPopup.style.display = "none";
 
-    writtenDigits.innerHTML = "π = 3.?";
+    lives = startingLives;
+    position = startingPosition;
 
-    startingLives = 3;
-    lives = 3;
-
-    piPosition = 0;
     UpdateLifeCounter();
+    UpdateWrittenDigits();
 
     ChangeTheme(theme);
     ChangeMobileInput(mobileInput);
 
     inputDigit.style.width = '150px';
     writtenDigits.focus();
+
+    endGame.style.display = "none";
+    openSettings.style.display = "block";
 
     inputAllowed = true;
 }
@@ -152,6 +215,17 @@ window.onclick = function(event) {
 
 
 window.onload = function() {
+    Load();
+    ResetGame();
+    RegisterServiceWorker();
+    ShowHideInstallButton();
+
+    if (window.location.hash) {
+        OpenSettings();
+    }
+}
+
+function Load() {
     let _theme = localStorage.getItem("theme");
     if (_theme != null) {
         theme = _theme;
@@ -184,12 +258,6 @@ window.onload = function() {
         mobileInput = MobileCheck();
         localStorage.setItem("mobileInput", mobileInput);
     }
-
-    ResetGame();
-
-    if (window.location.hash) {
-        OpenSettings();
-    }
 }
 
 function DigitInputValueChange() {
@@ -207,12 +275,12 @@ function DigitInputLoseFocus() {
 
 // disable mousewheel on a input number field when in focus
 // (to prevent Cromium browsers change the value when scrolling)
-$('form').on('focus', 'input[type=number]', function(e) {
+$('form').on('focus', '#inputDigit', function(e) {
     $(this).on('wheel.disableScroll', function(e) {
         e.preventDefault()
     })
 })
-$('form').on('blur', 'input[type=number]', function(e) {
+$('form').on('blur', '#inputDigit', function(e) {
     $(this).off('wheel.disableScroll')
 })
 
