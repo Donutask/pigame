@@ -184,6 +184,9 @@ function ResetGame() {
     lives = startingLives;
     position = startingPosition;
 
+    startLivesInput.value = startingLives;
+    startPosInput.value = startingPosition;
+
     UpdateLifeCounter();
     UpdateWrittenDigits();
 
