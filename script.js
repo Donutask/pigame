@@ -1,6 +1,5 @@
 const writtenDigits = document.getElementById("writtenDigits");
 const lifeCounter = document.getElementById("livesLeft");
-const gameOverPopup = document.getElementById("gameOver");
 const settingsPopup = document.getElementById("settings");
 const inputDigit = document.getElementById("inputDigit");
 
@@ -12,6 +11,7 @@ const startLivesInput = document.getElementById("startLivesInput");
 
 const openSettings = document.getElementById("openSettings");
 const endGame = document.getElementById("endGame");
+const playAgainButton = document.getElementById("replay");
 
 let startingPosition = 0;
 let position;
@@ -31,9 +31,7 @@ document.addEventListener('keyup', (e) => {
         if (!isNaN(key) && key != " ") {
             let num = parseInt(key);
 
-            if (position >= number.digits.length - 1) {
-                inputAllowed = false;
-
+            if (position >= number.digits.length) {
                 TooGood();
             } else if (num == number.digits[position]) {
                 position++;
@@ -68,40 +66,32 @@ function UpdateLifeCounter() {
     }
 
     if (lives <= 0) {
-        gameOverPopup.style.display = "block";
-        score.innerHTML = position;
-        lifeCounter.innerHTML = "Game Over";
-
-        if (position == 1) {
-            score.innerHTML = `You recited 1 digit of ${number.symbol}.`
-        } else {
-            score.innerHTML = `You recited <b>${position}</b> digits of ${number.symbol}!`
-        }
-
-        inputAllowed = false;
+        GameOver();
     }
 }
 
 
 function TooGood() {
-    gameOverPopup.style.display = "block";
-    score.innerHTML = `You've recited all the digits of ${number.symbol} that this website knows! Well done!!`
+    inputAllowed = false;
+    lifeCounter.innerHTML = `You've recited all the digits of ${number.symbol} that this website knows! Well done!!`
 }
 
 function GameOver() {
     inputAllowed = false;
 
-    score.innerHTML = position;
+    writtenDigits.innerHTML = "Game Over";
+
     if (position > 1) {
-        score.innerHTML = `You recited <b>${position}</b> digits of ${number.symbol}!`
+        lifeCounter.innerHTML = `You recited <b>${position}</b> digits of ${number.symbol}!`
     } else {
-        score.innerHTML = `You recited 1 digit of ${number.symbol}!`
+        lifeCounter.innerHTML = `You recited 1 digit of ${number.symbol}!`
     }
 
-    gameOverPopup.style.display = "block";
+
+    playAgainButton.style.display = "block";
 
     endGame.style.display = "none";
-    openSettings.style.display = "block";
+    openSettings.style.display = "none";
 }
 
 function OpenSettings() {
@@ -158,8 +148,8 @@ function ChangeMobileInput(value) {
 }
 
 function ResetGame() {
-    gameOverPopup.style.display = "none";
     settingsPopup.style.display = "none";
+    playAgainButton.style.display = "none";
 
     lives = startingLives;
     position = startingPosition;
@@ -184,9 +174,6 @@ function ResetGame() {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-    if (event.target == gameOverPopup) {
-        ResetGame();
-    }
     if (event.target == settingsPopup) {
         ResetGame();
     }

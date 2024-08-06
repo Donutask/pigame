@@ -54,16 +54,8 @@
         <p id="livesLeft">Lives: 3</p>
         <a id="endGame" onclick="GameOver()">&times; End</a>
         <a id="openSettings" onclick="OpenSettings()">&#9881; Settings</a>
+        <button id="replay" onclick='ResetGame()'>Play Again</button>
     </main>
-
-
-    <div id="gameOver" class="modal">
-        <div class="modalContent">
-            <h2>Game Over</h2>
-            <p id="score">You recited <b>31</b> digits of pi! </p>
-            <button class="closeButton" onclick='ResetGame()'>Play Again</button>
-        </div>
-    </div>
 
     <div id="settings" class="modal">
         <div class="modalContent">
@@ -92,16 +84,6 @@
             <div id="install">
                 <button id="add-button">Add to home screen</button>
             </div>
-            <br>
-            <a href="about.html">About</a>
-            <br>
-            <a href="privacy.html">Privacy</a>
-            <br>
-            <a href="https://github.com/Donutask/pigame">Source Code</a>
-            <br>
-
-            <br>
-            <br>
 
             <button class="closeButton" onclick='ResetGame()'>Close</button>
         </div>
