@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pi Game</title>
+    <meta name="description" content="Free quiz to help memorise Pi π">
 
     <!-- roboto -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
-    <link href="styleMain.css" rel="stylesheet">
+    <link href="Stylesheets/sharedStyle.css" rel="stylesheet">
+    <link href="Stylesheets/frontPageStyle.css" rel="stylesheet">
 
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
 
@@ -20,14 +22,52 @@
 </head>
 
 <body>
-    <h1>Pi Game</h1>
-    <p>How many digits of pi can you recite?</p>
-    <a id="play" href="play.html">Play!</a>
-    <br>
-    <p>Created by <a href="https://d0nutask.wixsite.com/donutask/">Donutask</a></p>
-    <a href="privacy.html">Privacy</a>
-    <br>
-    <a href="https://github.com/Donutask/pigame">Source Code</a>
+    <div id="content">
+        <header class="top">
+            <h1>Pi Game</h1>
+            <p id="subtitle">How many digits of π can you recite?</p>
+            <a id="play" href="play.html">Begin!</a>
+        </header>
+        <main></main>
+        <h2>About Pi Game</h2>
+        <p>This is a free, no-ads web game to test how many digits of pi you can memorise.</p>
+
+        <h2>What is Pi</h2>
+        <p>Pi (symbol: π) is a number that represents the ratio of a circle's circumference to its diameter.</p>
+
+        <h2>What is pie?</h2>
+        <p>Delicious!</p>
+
+        <h2>How many digits are in Pi?</h2>
+        <p>Infinitely many! This website only stores the first 1000, however.</p>
+
+        <h2>What are the first 100 digits of Pi?</h2>
+        <p id="digits">
+            3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679</p>
+
+        <h2>Why memorise the digits of Pi?</h2>
+        <p>To win a Pi reciting competition, improve memory, and brag to non-existant friends.</p>
+
+        <h2>What is the symbol for Pi?</h2>
+        <p id="piSymbol">π</p>
+
+        <h2>What are with these questions?</h2>
+        <p>To get better search engine results, this free online pi memorisation website - which has no distractions,
+            ads,
+            or annoying popups - is writing, using, describing, printing, typing, and placing many keywords to
+            hopefully push this free online Pi (π) memorisation quiz to more people.</p>
+        </main>
+
+        <h2>How do I start the Pi quiz?</h2>
+        <a href="play.html">Begin Pi Game</a>
+
+        <footer>
+            <div id="footer_content ">
+                <p>Created by <a href="https://donutask.com">Donutask</a></p>
+                <small><b>Privacy Policy:</b> This website doesn't track you.</small>
+            </div>
+        </footer>
+    </div>
 </body>
 
 </html>

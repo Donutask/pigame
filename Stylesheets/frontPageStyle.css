@@ -1,0 +1,70 @@
+.top {
+    text-align: center;
+}
+
+h1 {
+    margin: 5px;
+    font-size: 3em;
+}
+
+#play {
+    font-size: 4em;
+}
+
+#subtitle {
+    font-style: italic;
+}
+
+#content {
+    margin: 0 auto;
+    text-align: left;
+
+    width: 100vw;
+    min-height: calc(100vh - 40px);
+    max-width: 750px;
+
+    padding: 20px;
+
+    background-color: white;
+}
+
+#digits {
+    font-size: 1.1em;
+    overflow-x: scroll;
+}
+
+#piSymbol {
+    font-size: 10em;
+    /* line-height: 0px; */
+    margin: 0px;
+    padding: 0px;
+    user-select: all;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+#footer_content {
+    display: table;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+    a:visited {
+        color: #ff69ff;
+    }
+
+    a {
+        color: #4aadfe;
+    }
+
+    #content {
+        background-color: #3c3c3c;
+    }
+}
