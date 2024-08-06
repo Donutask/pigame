@@ -59,38 +59,15 @@
 
     <div id="gameOver" class="modal">
         <div class="modalContent">
-            <span class="close" onclick='ResetGame()'>&times;</span>
             <h2>Game Over</h2>
             <p id="score">You recited <b>31</b> digits of pi! </p>
             <button class="closeButton" onclick='ResetGame()'>Play Again</button>
         </div>
     </div>
 
-    <div id="overflowGameOver" class="modal">
-        <div class="modalContent">
-            <span class="close" onclick='ResetGame()'>&times;</span>
-            <h2>Woah!</h2>
-            <p>You can recite <b id="length">1000</b> digits of pi! You reached the max digits the site knows so you'll
-                have to stop here.</p>
-            <button class="closeButton" onclick='ResetGame()'>Close</button>
-        </div>
-    </div>
-
     <div id="settings" class="modal">
         <div class="modalContent">
-            <span class="close" onclick='ResetGame()'>&times;</span>
             <h2>Settings</h2>
-
-            <!-- <div>
-                <p class="settingLabel">Number </p>
-                <select>
-                  <option selected=true disabled=true>Select</option>
-                  <option>π Pi</option>
-                  <option>ϕ Phi</option>
-                  </select>
-                
-            </div>
-            <br> -->
             <div>
                 <label class="settingLabel" for="startPosInput">Start position </label>
                 <input id="startPosInput" class="numInput" type="number" min="0" max="999"
@@ -103,16 +80,6 @@
                     oninput="ChangeStartLives(this.value)"></input>
             </div>
             <br>
-            <div>
-                <p class="settingLabel">Light Theme </p>
-                <label class="switch" id="themeLabel">
-
-                    <input id="themeToggle" type="checkbox" onchange="ChangeTheme(this.checked)"></input>
-                    <span id="themeTogglier" class="slider round"></span>
-                </label>
-            </div>
-            <br>
-
             <div>
                 <p class="settingLabel">Text Input Field </p>
                 <label class="switch" id="mobileInputLabel">

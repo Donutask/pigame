@@ -194,12 +194,16 @@ input[type=number] {
 .modalContent {
     background-color: #fefefe;
     color: #000;
-    margin: 15% auto;
-    /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    /* Could be more or less, depending on screen size */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    width: min(750px, 80%);
+
 }
 
 
