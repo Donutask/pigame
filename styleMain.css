@@ -3,6 +3,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     text-align: center;
+    margin: 0;
 }
 
 #play {
@@ -13,19 +14,17 @@ a {
     cursor: pointer;
 }
 
-noscript {
-    width: 100%;
-    height: 100%;
-    display: block;
-    background-color: white;
-    color: black;
-    padding: 5px;
-    margin: 10px;
-    text-align: left;
+.content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100vw;
 }
 
 #writtenDigits {
-    font-size: 2em;
+    font-size: 2.5em;
     padding: 15px;
     width: 90%;
     overflow-y: hidden;
@@ -301,8 +300,31 @@ input:checked+.slider:before {
     margin: 15px;
 }
 
+/* Theming */
+/* Default light */
+body {
+    background-color: rgb(250, 250, 250);
+    color: black;
+}
 
-/* #themeTogglier::before {
-    background-color: #000;
-    background-image: url("Images/sun.svg");
-} */
+#writtenDigits {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#inputDigit {
+    background: rgb(200, 200, 200);
+    color: black;
+}
+
+/* Dark mode preference */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #2B2A33;
+        color: white;
+    }
+
+    #inputDigit {
+        background: rgb(230, 230, 230);
+        color: black;
+    }
+}

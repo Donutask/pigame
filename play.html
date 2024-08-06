@@ -33,21 +33,22 @@
 </head>
 
 <body>
-
-    <header>
-        <h1 id="heading">Pi Game</h1>
-    </header>
-
     <noscript>
-       <style> main { display: none } </style>
-       <h3> This page requires JavaScript! Please enable it in your browsers settings.</h3>
-       <h5>Why?</h5>
-       <p>This site uses JavaScript to make the game actually work. It detects keypresses, checks if their right, processes and stores settings and much more. It isn't used to track you.</p>
+        <style>
+            main {
+                display: none
+            }
+        </style>
+        <h3> This page requires JavaScript! Please enable it in your browsers settings.</h3>
+        <h5>Why?</h5>
+        <p>This site uses JavaScript to make the game actually work. It detects keypresses, checks if their right,
+            processes and stores settings and much more. It isn't used to track you.</p>
     </noscript>
 
-    <main>
+    <main class="content">
         <p id="writtenDigits"></p>
-        <input id="inputDigit" placeholder="Tap here to type" type="number" oninput='DigitInputValueChange()' onblur="DigitInputLoseFocus()">
+        <input id="inputDigit" placeholder="Tap here to type" type="number" oninput='DigitInputValueChange()'
+            onblur="DigitInputLoseFocus()">
 
         </input>
         <p id="livesLeft">Lives: 3</p>
@@ -69,7 +70,8 @@
         <div class="modalContent">
             <span class="close" onclick='ResetGame()'>&times;</span>
             <h2>Woah!</h2>
-            <p>You can recite <b id="length">1000</b> digits of pi! You reached the max digits the site knows so you'll have to stop here.</p>
+            <p>You can recite <b id="length">1000</b> digits of pi! You reached the max digits the site knows so you'll
+                have to stop here.</p>
             <button class="closeButton" onclick='ResetGame()'>Close</button>
         </div>
     </div>
@@ -91,20 +93,22 @@
             <br> -->
             <div>
                 <label class="settingLabel" for="startPosInput">Start position </label>
-                <input id="startPosInput" class="numInput" type="number" min="0" max="999" oninput="ChangeStartPos(this.value)"></input>
+                <input id="startPosInput" class="numInput" type="number" min="0" max="999"
+                    oninput="ChangeStartPos(this.value)"></input>
             </div>
             <br>
             <div>
                 <label class="settingLabel" for="startLivesInput">Lives </label>
-                <input id="startLivesInput" class="numInput" type="number" min="1" max="10" oninput="ChangeStartLives(this.value)"></input>
+                <input id="startLivesInput" class="numInput" type="number" min="1" max="10"
+                    oninput="ChangeStartLives(this.value)"></input>
             </div>
             <br>
             <div>
                 <p class="settingLabel">Light Theme </p>
                 <label class="switch" id="themeLabel">
-                
-               <input id="themeToggle" type="checkbox" onchange="ChangeTheme(this.checked)"></input>
-                <span id="themeTogglier" class="slider round"></span>
+
+                    <input id="themeToggle" type="checkbox" onchange="ChangeTheme(this.checked)"></input>
+                    <span id="themeTogglier" class="slider round"></span>
                 </label>
             </div>
             <br>
@@ -112,9 +116,9 @@
             <div>
                 <p class="settingLabel">Text Input Field </p>
                 <label class="switch" id="mobileInputLabel">
-                
-               <input id="mobileInput" type="checkbox" onchange="ChangeMobileInput(this.checked)"></input>
-                <span class="slider round"></span>
+
+                    <input id="mobileInput" type="checkbox" onchange="ChangeMobileInput(this.checked)"></input>
+                    <span class="slider round"></span>
                 </label>
             </div>
             <br>
